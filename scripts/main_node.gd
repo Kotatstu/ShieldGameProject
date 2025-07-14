@@ -41,5 +41,3 @@ func _on_shield_shield_retrieve() -> void:
 	var player_pos = $player.global_position
 	$Shield.global_position = player_pos
 	$Shield.is_thrown = false
-
-#kkkkk

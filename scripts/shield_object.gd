@@ -56,4 +56,4 @@ func throw_shield_at(target_pos: Vector2):
 func stop_shield():
 	velocity = Vector2.ZERO
 	$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
-	print($StaticBody2D/CollisionShape2D.disabled)
+	

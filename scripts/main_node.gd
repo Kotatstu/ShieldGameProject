@@ -1,5 +1,6 @@
 extends Node2D
 
+var player_to_shield_dis = Vector2(10, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,8 +13,6 @@ func _process(delta: float) -> void:
 	if $Shield.is_thrown == false:
 		var player_pos = $player.global_position
 		$Shield.global_position = player_pos
-	
-
 	
 # Called when there a input event
 func _input(event):

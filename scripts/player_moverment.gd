@@ -4,7 +4,7 @@ const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 const SNAP_LENGTH = 8.0          # Khoảng cách snap để bám mặt đất
 const MAX_SLOPE_ANGLE = 45.0     # Góc dốc tối đa (độ)
-
+const gravity: float = 20
 @onready var animated_sprite = $Node2D/CharacterAnimation
 
 func _ready() -> void:

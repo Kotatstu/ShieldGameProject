@@ -186,7 +186,7 @@ animations = [{
 radius = 5.0
 height = 12.0
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["Climber", "player"]]
 collision_layer = 2
 script = ExtResource("1_3j5lm")
 

@@ -20,8 +20,3 @@ zoom = Vector2(2.9, 3)
 
 [node name="Shield" parent="." instance=ExtResource("4_8m825")]
 position = Vector2(32, -7)
-
-[connection signal="body_entered" from="Shield" to="." method="_on_shield_body_entered"]
-[connection signal="shield_retrieve" from="Shield" to="." method="_on_shield_shield_retrieve"]
-[connection signal="shield_stop" from="Shield" to="." method="_on_shield_shield_stop"]
-[connection signal="shield_throw" from="Shield" to="." method="_on_shield_shield_throw"]

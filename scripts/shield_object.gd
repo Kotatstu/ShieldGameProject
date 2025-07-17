@@ -15,7 +15,8 @@ var max_distant = 150
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$StaticBody2D/CollisionShape2D.disabled = true
+	
 	
 
 func _input(event):
@@ -46,6 +47,8 @@ func _physics_process(delta):
 		var traveled = global_position.distance_to(shield_start_pos)
 		if(traveled > max_distant):
 			is_thrown = false
+
+
 	
 # Throw the shield at the pos of mouse, stop when reach wall or max length
 func throw_shield_at(target_pos: Vector2):
@@ -56,4 +59,3 @@ func throw_shield_at(target_pos: Vector2):
 func stop_shield():
 	velocity = Vector2.ZERO
 	$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
-	

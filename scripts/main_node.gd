@@ -5,14 +5,47 @@ var player_to_shield_dis = Vector2(10, 0)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
+	
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'de=lta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#On every frame, update real shield position to follow player
 	if $Shield.is_thrown == false:
 		var player_pos = $player.global_position
-		$Shield.global_position = player_pos
+		var mouse_pos = get_global_mouse_position()
+		
+		# Direction from player to mouse
+		var dir = (mouse_pos - player_pos).normalized()
+		var angle = dir.angle()
+		
+		# Determine facing direction
+		var facing_right = $player.last_direction > 0
+		
+		# Clamp angle between -45° and +20° (or 135° to 200° when mirrored)
+		var min_angle = deg_to_rad(-45)
+		var max_angle = deg_to_rad(20)
+
+		
+		if facing_right:
+			angle = clamp(angle, min_angle, max_angle)
+			var offset = Vector2(20, 0).rotated(angle)
+			$Shield.global_position = player_pos + offset
+			$Shield.rotation = angle
+			
+			print("Offset_right: ", offset)
+		else:
+			# Flip angle horizontally by mirroring across Y axis
+			angle = clamp(angle, min_angle, max_angle)
+			var offset = Vector2(-20, 0).rotated(angle)
+			$Shield.global_position = player_pos + offset
+			$Shield.rotation = angle
+			
+			print("Offset_left: ", offset)
+		
+		print("dir: ", dir)
+		print("angle: ", angle)
+	
 	
 # Called when there a input event
 func _input(event):

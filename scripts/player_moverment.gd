@@ -5,6 +5,10 @@ const JUMP_VELOCITY = -300.0
 const SNAP_LENGTH = 8.0          # Khoảng cách snap để bám mặt đất
 const MAX_SLOPE_ANGLE = 45.0     # Góc dốc tối đa (độ)
 const gravity: float = 20
+	 
+
+@export var last_direction = 1
+
 @onready var animated_sprite = $Node2D/CharacterAnimation
 
 func _ready() -> void:
@@ -26,15 +30,19 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	#-1, 0, 0
-	var direction := Input.get_axis("move_left", "move_right")
+	#-1, 0, 1
+	var direction = Input.get_axis("move_left", "move_right")
 	
 	#flip
 	if direction > 0:
 		animated_sprite.flip_h = false
 	elif direction < 0:
 		animated_sprite.flip_h = true
-		
+	
+	#For last_direction
+	if direction != 0:
+		last_direction = direction
+	
 	#play animation
 	if is_on_floor():
 		if direction == 0:
@@ -46,8 +54,8 @@ func _physics_process(delta: float) -> void:
 	
 	#move the player
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * SPEED + delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
 	move_and_slide()

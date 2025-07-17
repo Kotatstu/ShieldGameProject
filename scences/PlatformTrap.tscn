@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpsf6memjplti"]
+
+[ext_resource type="Script" uid="uid://d0yjvoqsyvv8h" path="res://scripts/platform_trap.gd" id="1_4evmt"]
+[ext_resource type="Texture2D" uid="uid://d15ohjgnni4ai" path="res://assets/sprites/tileset.png" id="1_nkkda"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4evmt"]
+size = Vector2(79, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkkda"]
+size = Vector2(73, 7)
+
+[node name="PlatformTrap" type="Node2D"]
+script = ExtResource("1_4evmt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nkkda")
+region_enabled = true
+region_rect = Rect2(78, 56, 86, 20)
+
+[node name="Body" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_4evmt")
+one_way_collision = true
+
+[node name="Detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-0.5, -6.5)
+shape = SubResource("RectangleShape2D_nkkda")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

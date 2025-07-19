@@ -2,12 +2,10 @@ extends CharacterBody2D
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
-const SNAP_LENGTH = 8.0          # Khoảng cách snap để bám mặt đất
-const MAX_SLOPE_ANGLE = 45.0     # Góc dốc tối đa (độ)
+const SNAP_LENGTH = 8.0
+const MAX_SLOPE_ANGLE = 45.0     
 const gravity: float = 20
-	 
 
-@export var last_direction = 1
 
 @onready var animated_sprite = $Node2D/CharacterAnimation
 
@@ -39,9 +37,6 @@ func _physics_process(delta: float) -> void:
 	elif direction < 0:
 		animated_sprite.flip_h = true
 	
-	#For last_direction
-	if direction != 0:
-		last_direction = direction
 	
 	#play animation
 	if is_on_floor():

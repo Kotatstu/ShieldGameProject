@@ -19,11 +19,6 @@ func _process(delta: float) -> void:
 		var dir = (mouse_pos - player_pos).normalized()
 		var angle = dir.angle()
 		
-		
-		# Clamp angle between -45° and +20° (or 135° to 200° when mirrored)
-		var min_angle = deg_to_rad(-45)
-		var max_angle = deg_to_rad(20)
-		
 		#offset shield from character
 		var offset = dir * 15
 		

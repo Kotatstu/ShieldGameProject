@@ -19,32 +19,18 @@ func _process(delta: float) -> void:
 		var dir = (mouse_pos - player_pos).normalized()
 		var angle = dir.angle()
 		
-		# Determine facing direction
-		var facing_right = $player.last_direction > 0
 		
 		# Clamp angle between -45° and +20° (or 135° to 200° when mirrored)
 		var min_angle = deg_to_rad(-45)
 		var max_angle = deg_to_rad(20)
-
 		
-		if facing_right:
-			angle = clamp(angle, min_angle, max_angle)
-			var offset = Vector2(20, 0).rotated(angle)
-			$Shield.global_position = player_pos + offset
-			$Shield.rotation = angle
-			
-			print("Offset_right: ", offset)
-		else:
-			# Flip angle horizontally by mirroring across Y axis
-			angle = clamp(angle, min_angle, max_angle)
-			var offset = Vector2(-20, 0).rotated(angle)
-			$Shield.global_position = player_pos + offset
-			$Shield.rotation = angle
-			
-			print("Offset_left: ", offset)
+		#offset shield from character
+		var offset = dir * 15
 		
-		print("dir: ", dir)
-		print("angle: ", angle)
+		#Place shield
+		$Shield.global_position = player_pos + offset
+		#Rotate shield
+		$Shield.rotation = dir.angle()
 	
 	
 # Called when there a input event

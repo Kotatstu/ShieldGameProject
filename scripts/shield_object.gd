@@ -15,20 +15,22 @@ var max_distant = 150
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$StaticBody2D/CollisionShape2D.disabled = true
+	$StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
+	$CollisionShape2D.set_deferred("disabled", true)
 	
 	
 
 func _input(event):
 	#Emit throw shield signal when left click
 	if event.is_action_pressed("left_click") and is_thrown == false:
+		$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
+		$CollisionShape2D.set_deferred("disabled", false)
 		shield_throw.emit()
 	elif event.is_action_pressed("left_click") and is_thrown == true:
 		pass
 	
 	#Emit retrieve shield signal when right click
 	if event.is_action_pressed("right_click"):
-		$StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
 		shield_retrieve.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,4 +60,3 @@ func throw_shield_at(target_pos: Vector2):
 		
 func stop_shield():
 	velocity = Vector2.ZERO
-	$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)

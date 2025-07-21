@@ -2,9 +2,12 @@ extends CharacterBody2D
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
-const SNAP_LENGTH = 8.0
-const MAX_SLOPE_ANGLE = 45.0     
-const gravity: float = 20
+const SNAP_LENGTH = 8.0          # Khoảng cách snap để bám mặt đất
+const MAX_SLOPE_ANGLE = 45.0     # Góc dốc tối đa 
+const gravity = 900.0            # Lực trọng trường 
+var climbing: bool = false
+var current_rope: Area2D = null
+@export var climb_speed: float = 100.0
 
 
 @onready var animated_sprite = $Node2D/CharacterAnimation
@@ -18,7 +21,8 @@ func _process(delta: float) -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+
+# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 

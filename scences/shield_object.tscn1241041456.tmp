@@ -7,7 +7,7 @@
 radius = 4.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xx7r3"]
-size = Vector2(2, 2)
+size = Vector2(8, 8)
 
 [node name="Shield" type="Area2D"]
 collision_layer = 4
@@ -22,10 +22,6 @@ visible = false
 shape = SubResource("CircleShape2D_hpawm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_xx7r3")
-disabled = true
-
-[connection signal="shield_retrieve" from="." to="." method="_on_shield_retrieve"]

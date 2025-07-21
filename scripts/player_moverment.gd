@@ -8,6 +8,8 @@ const gravity = 900.0            # Lực trọng trường
 var climbing: bool = false
 var current_rope: Area2D = null
 @export var climb_speed: float = 100.0
+
+
 @onready var animated_sprite = $Node2D/CharacterAnimation
 
 func _ready() -> void:
@@ -30,15 +32,16 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	#-1, 0, 0
-	var direction := Input.get_axis("move_left", "move_right")
+	#-1, 0, 1
+	var direction = Input.get_axis("move_left", "move_right")
 	
 	#flip
 	if direction > 0:
 		animated_sprite.flip_h = false
 	elif direction < 0:
 		animated_sprite.flip_h = true
-		
+	
+	
 	#play animation
 	if is_on_floor():
 		if direction == 0:
@@ -50,8 +53,8 @@ func _physics_process(delta: float) -> void:
 	
 	#move the player
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * SPEED + delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
 	move_and_slide()

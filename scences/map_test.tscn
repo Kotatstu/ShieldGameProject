@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dirohymcafquj"]
+
+[gd_scene load_steps=12 format=3 uid="uid://2rkskkdkx4ig"]
+
 
 [ext_resource type="Texture2D" uid="uid://bi1cbrcrfp4q6" path="res://assets/sprites/world_tileset.png" id="1_gv4au"]
 [ext_resource type="Texture2D" uid="uid://d15ohjgnni4ai" path="res://assets/sprites/tileset.png" id="2_g3qd7"]
 [ext_resource type="Texture2D" uid="uid://eoqigheky1kf" path="res://assets/sprites/tileset_atlas.png" id="3_d2u33"]
-[ext_resource type="Script" uid="uid://tbylfxme3jfy" path="res://scripts/rope.gd" id="4_bhfyi"]
+[ext_resource type="Script" path="res://scripts/rope.gd" id="4_bhfyi"]
 [ext_resource type="PackedScene" uid="uid://dv167axfivv10" path="res://scences/platform.tscn" id="4_d2u33"]
 [ext_resource type="PackedScene" uid="uid://bjf3j02yshb1p" path="res://scences/player.tscn" id="4_g3qd7"]
 [ext_resource type="PackedScene" uid="uid://ld684i3afej1" path="res://scences/PlatformTrap.tscn" id="6_86ovg"]

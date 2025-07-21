@@ -1,19 +1,32 @@
 extends Node2D
 
+var player_to_shield_dis = Vector2(10, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
+	
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'de=lta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#On every frame, update real shield position to follow player
 	if $Shield.is_thrown == false:
 		var player_pos = $player.global_position
-		$Shield.global_position = player_pos
+		var mouse_pos = get_global_mouse_position()
+		
+		# Direction from player to mouse
+		var dir = (mouse_pos - player_pos).normalized()
+		var angle = dir.angle()
+		
+		#offset shield from character
+		var offset = dir * 15
+		
+		#Place shield
+		$Shield.global_position = player_pos + offset
+		#Rotate shield
+		$Shield.rotation = dir.angle()
 	
-
 	
 # Called when there a input event
 func _input(event):
@@ -41,5 +54,3 @@ func _on_shield_shield_retrieve() -> void:
 	var player_pos = $player.global_position
 	$Shield.global_position = player_pos
 	$Shield.is_thrown = false
-
-#kkkkk

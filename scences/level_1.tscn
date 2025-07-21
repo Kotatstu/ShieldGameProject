@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bi1cbrcrfp4q6" path="res://assets/sprites/world_tileset.png" id="2_xhca5"]
 [ext_resource type="Texture2D" uid="uid://eoqigheky1kf" path="res://assets/sprites/tileset_atlas.png" id="3_sb2ae"]
 [ext_resource type="PackedScene" uid="uid://dv167axfivv10" path="res://scences/platform.tscn" id="4_sjas7"]
-[ext_resource type="PackedScene" uid="uid://cpsf6memjplti" path="res://scences/PlatformTrap.tscn" id="5_k3rl8"]
+[ext_resource type="PackedScene" uid="uid://ld684i3afej1" path="res://scences/PlatformTrap.tscn" id="5_k3rl8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3rl8"]
 texture = ExtResource("2_xhca5")
@@ -662,4 +662,3 @@ position = Vector2(183, -39)
 
 [node name="PlatformTrap" parent="." instance=ExtResource("5_k3rl8")]
 position = Vector2(183, -67)
-script = null

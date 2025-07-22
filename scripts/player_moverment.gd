@@ -7,6 +7,7 @@ const MAX_SLOPE_ANGLE = 45.0     # Góc dốc tối đa
 const gravity = 900.0            # Lực trọng trường 
 var climbing: bool = false
 var current_rope: Area2D = null
+var onRope = false
 @export var climb_speed: float = 100.0
 
 
@@ -22,8 +23,19 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 
+# Drop down on platform
+	if Input.is_action_pressed("Down"):
+		position.y += 1
+# on Rope
+	if onRope:
+		if Input.is_action_pressed("Up"):
+			velocity.y = -SPEED * 1
+		elif Input.is_action_pressed("Down"):
+			velocity.y = SPEED * 1
+		else:
+			velocity.y = 0
 # Add the gravity.
-	if not is_on_floor():
+	elif  not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Handle jump.

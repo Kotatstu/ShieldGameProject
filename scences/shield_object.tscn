@@ -21,7 +21,7 @@ texture = ExtResource("1_hpawm")
 visible = false
 shape = SubResource("CircleShape2D_hpawm")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["shield"]]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

@@ -655,10 +655,10 @@ position = Vector2(185, -282)
 zoom = Vector2(2.9, 3)
 
 [node name="AnimatableBody2D" parent="." instance=ExtResource("4_sjas7")]
-position = Vector2(63, -37)
+position = Vector2(38, -41)
 
 [node name="AnimatableBody2D2" parent="." instance=ExtResource("4_sjas7")]
-position = Vector2(183, -39)
+position = Vector2(184, -47)
 
 [node name="PlatformTrap" parent="." instance=ExtResource("5_k3rl8")]
 position = Vector2(183, -67)

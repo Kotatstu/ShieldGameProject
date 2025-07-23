@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1dae85pvpfjc"]
+
+[ext_resource type="Script" uid="uid://tb5tq1fllhbx" path="res://scripts/pushable_object.gd" id="1_0fqir"]
+[ext_resource type="Texture2D" uid="uid://buw2evrxsw3vl" path="res://assets/sprites/Boulder_(projectile).png" id="2_1a0h2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ew2yu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrcvk"]
+size = Vector2(7.00137, 20)
+
+[node name="pushable object" type="CharacterBody2D" groups=["rock"]]
+script = ExtResource("1_0fqir")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1a0h2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.58368, 1.58688)
+shape = SubResource("CircleShape2D_ew2yu")
+
+[node name="left" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left"]
+position = Vector2(-13, 0)
+scale = Vector2(1.29717, 0.735666)
+shape = SubResource("RectangleShape2D_wrcvk")
+
+[node name="right" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right"]
+position = Vector2(11, 0)
+scale = Vector2(1.81134, 0.780768)
+shape = SubResource("RectangleShape2D_wrcvk")
+
+[connection signal="body_entered" from="left" to="." method="_on_left_body_entered"]
+[connection signal="body_exited" from="left" to="." method="_on_left_body_exited"]
+[connection signal="body_entered" from="right" to="." method="_on_right_body_entered"]
+[connection signal="body_exited" from="right" to="." method="_on_right_body_exited"]

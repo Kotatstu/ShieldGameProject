@@ -12,6 +12,7 @@ position = Vector2(16, -48)
 script = ExtResource("1_fltcg")
 
 [node name="Level1" parent="." instance=ExtResource("1_gu7s8")]
+position = Vector2(3, -1)
 
 [node name="player" parent="." instance=ExtResource("2_fltcg")]
 position = Vector2(32, -7)
@@ -25,7 +26,6 @@ position = Vector2(32, -7)
 
 [node name="Area2D" parent="." instance=ExtResource("5_j3sgy")]
 position = Vector2(108, -3)
-scale = Vector2(0.670563, 0.439999)
 
 [node name="pushable object" parent="." instance=ExtResource("6_f3woj")]
 position = Vector2(69, -16)

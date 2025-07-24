@@ -1,14 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1dae85pvpfjc"]
+[gd_scene load_steps=4 format=3 uid="uid://d1dae85pvpfjc"]
 
 [ext_resource type="Script" uid="uid://tb5tq1fllhbx" path="res://scripts/pushable_object.gd" id="1_0fqir"]
 [ext_resource type="Texture2D" uid="uid://buw2evrxsw3vl" path="res://assets/sprites/Boulder_(projectile).png" id="2_1a0h2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ew2yu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrcvk"]
-size = Vector2(7.00137, 20)
-
 [node name="pushable object" type="CharacterBody2D" groups=["rock"]]
+collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_0fqir")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -21,18 +20,14 @@ shape = SubResource("CircleShape2D_ew2yu")
 [node name="left" type="Area2D" parent="."]
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="left"]
-position = Vector2(-13, 0)
-scale = Vector2(1.29717, 0.735666)
-shape = SubResource("RectangleShape2D_wrcvk")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="left"]
+polygon = PackedVector2Array(-17, 0, -17, -5, -15, -5, -15, -11, -13, -11, -13, -14, -9, -14, -9, -16, -5, -16, -5, -17, -1, -17, -1, 17, -7, 17, -7, 15, -11, 15, -11, 13, -13, 13, -13, 11, -15, 11, -15, 7, -17, 7)
 
 [node name="right" type="Area2D" parent="."]
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="right"]
-position = Vector2(11, 0)
-scale = Vector2(1.81134, 0.780768)
-shape = SubResource("RectangleShape2D_wrcvk")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="right"]
+polygon = PackedVector2Array(1, -17, 5, -17, 5, -15, 11, -15, 11, -13, 13, -13, 13, -9, 15, -9, 15, -3, 17, -3, 17, 7, 15, 7, 15, 11, 13, 11, 13, 13, 11, 13, 11, 15, 7, 15, 7, 17, 1, 17)
 
 [connection signal="body_entered" from="left" to="." method="_on_left_body_entered"]
 [connection signal="body_exited" from="left" to="." method="_on_left_body_exited"]

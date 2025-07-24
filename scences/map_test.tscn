@@ -679,7 +679,6 @@ editor_draw_limits = true
 
 [node name="Area2D" parent="." instance=ExtResource("8_uc68c")]
 position = Vector2(348, 297)
-scale = Vector2(0.670563, 0.439999)
 
 [node name="pushable object" parent="." instance=ExtResource("9_ydmp7")]
 position = Vector2(388, 284)

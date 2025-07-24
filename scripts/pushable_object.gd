@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+const MAX_SLOPE_ANGLE = 45.0     # Góc dốc tối đa 
 var push =	false
 var direction = 0
 
@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 
 # Xử lý di chuyển khi có lực đẩy
 	if push:
-		velocity.x = direction * delta * 1500
+		velocity.x = direction * delta * 2000
 	else:
 		velocity.x = 0
 

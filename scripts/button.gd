@@ -18,6 +18,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("rock"):
 		print(body.name+ '1')
 		animated_sprite.play("press")
+	if body.is_in_group("shield"):
+		print(body.name+ '1')
+		animated_sprite.play("press")
 
 
 func _on_body_exited(body: Node2D) -> void:

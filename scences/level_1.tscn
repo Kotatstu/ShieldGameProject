@@ -632,8 +632,8 @@ texture = ExtResource("3_sb2ae")
 10:24/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_sjas7"]
-physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 7
+physics_layer_0/collision_layer = 9
+physics_layer_0/collision_mask = 15
 sources/0 = SubResource("TileSetAtlasSource_k3rl8")
 sources/1 = SubResource("TileSetAtlasSource_b8dy2")
 sources/2 = SubResource("TileSetAtlasSource_l41k7")
@@ -641,6 +641,8 @@ sources/2 = SubResource("TileSetAtlasSource_l41k7")
 [node name="Level1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
+light_mask = 31
+visibility_layer = 1023
 position = Vector2(0, -1)
 tile_set = SubResource("TileSet_sjas7")
 format = 2
@@ -655,7 +657,7 @@ position = Vector2(185, -282)
 zoom = Vector2(2.9, 3)
 
 [node name="AnimatableBody2D" parent="." instance=ExtResource("4_sjas7")]
-position = Vector2(38, -41)
+position = Vector2(50, -48)
 
 [node name="AnimatableBody2D2" parent="." instance=ExtResource("4_sjas7")]
 position = Vector2(184, -47)

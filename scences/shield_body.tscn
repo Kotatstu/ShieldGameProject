@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ber3wcs50xqyg"]
+
+[ext_resource type="Texture2D" uid="uid://cel5x3vdhecip" path="res://assets/sprites/tempShield.png" id="1_6ypgp"]
+[ext_resource type="Script" uid="uid://o4bbykey67e0" path="res://scripts/shield_body.gd" id="1_piyur"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ypgp"]
+size = Vector2(2, 12)
+
+[node name="Shield" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_piyur")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6ypgp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-08, -1.19209e-07)
+scale = Vector2(0.0197774, 0.0136253)
+texture = ExtResource("1_6ypgp")

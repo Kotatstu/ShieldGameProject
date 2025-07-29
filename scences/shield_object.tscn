@@ -1,31 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://bj7pofd7kxa7g"]
 
-[ext_resource type="Texture2D" uid="uid://pnm4mk028gmx" path="res://assets/sprites/shield.png" id="1_hpawm"]
 [ext_resource type="Script" uid="uid://dnenxg6rpnm7a" path="res://scripts/shield_object.gd" id="1_xx7r3"]
+[ext_resource type="Texture2D" uid="uid://cel5x3vdhecip" path="res://assets/sprites/tempShield.png" id="2_xx7r3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hpawm"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j74hk"]
+size = Vector2(2, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xx7r3"]
-size = Vector2(2, 2)
+size = Vector2(2, 12)
 
-[node name="Shield" type="Area2D"]
+[node name="Shield" type="Area2D" groups=["shield"]]
 collision_layer = 4
+collision_mask = 15
 script = ExtResource("1_xx7r3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.115, 0.115)
-texture = ExtResource("1_hpawm")
+position = Vector2(5.96046e-08, -1.19209e-07)
+scale = Vector2(0.0197774, 0.0136253)
+texture = ExtResource("2_xx7r3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_hpawm")
+shape = SubResource("RectangleShape2D_j74hk")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["shield"]]
-collision_mask = 2
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_xx7r3")
-disabled = true
 
 [connection signal="shield_retrieve" from="." to="." method="_on_shield_retrieve"]

@@ -19,17 +19,17 @@ func _process(delta):
 	$Sprite2D.position += Vector2(0, sin(time)*1.5)
 	
 func _on_body_entered(body: Node) -> void:
-	print(">>> Trap: body_entered:", body.name)
+	#print(">>> Trap: body_entered:", body.name)
 	if triggered:
 		return
 	if body.is_in_group("player"):
 		set_process(true)
-		print(">>> Trap: triggering break timer")
+		#print(">>> Trap: triggering break timer")
 		triggered = true
 		timer.start(break_delay)
 
 func _on_timer_timeout() -> void:
-	print(">>> Trap: timer timeout, disabling collision")
+	#print(">>> Trap: timer timeout, disabling collision")
 	body_collision.disabled = true
 	sprite.modulate = Color(1, 1, 1, 0.5)
 
@@ -41,5 +41,5 @@ func _on_timer_timeout() -> void:
 		get_parent().add_child(new_trap)
 		new_trap.global_position = global_position)  # ← kết thúc block
 	
-	print(">>> Trap: queue_free()")
+	#print(">>> Trap: queue_free()")
 	queue_free()

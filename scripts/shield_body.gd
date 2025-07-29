@@ -1,10 +1,11 @@
-extends Area2D
+extends CharacterBody2D
+
 
 signal shield_throw
 signal shield_stop
 signal shield_retrieve
 
-var velocity: Vector2 = Vector2.ZERO
+#var velocity: Vector2 = Vector2.ZERO
 var speed:= 250.0
 @export var is_thrown := false
 var shield_start_pos: Vector2

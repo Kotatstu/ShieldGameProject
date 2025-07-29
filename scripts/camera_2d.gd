@@ -1,20 +1,26 @@
 extends Camera2D
+@export var move_distance_y: float = 300.0
+var initial_position: Vector2
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 
 
-const SCREEN_SIZE := Vector2( 320, 180 )
-var cur_screen := Vector2( 0, 0 )
+func move_camera_by_y(offset_y: float) -> void:
+	global_position.y += offset_y
 
-func _ready():
-	set_as_top_level( true )
-	global_position = get_parent().global_position
-	_update_screen( cur_screen )
-
-func _physics_process(delta):
-	var parent_screen : Vector2 = ( get_parent().global_position / SCREEN_SIZE ).floor()
-	if not parent_screen.is_equal_approx( cur_screen ):
-		_update_screen( parent_screen )
+func _on_up_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print(body.name+ '1')
+		move_camera_by_y(-210)
 
 
-func _update_screen( new_screen : Vector2 ):
-	cur_screen = new_screen
-	global_position = cur_screen * SCREEN_SIZE + SCREEN_SIZE * 0.5
+func _on_down_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print(body.name+ '2')
+		move_camera_by_y(210)

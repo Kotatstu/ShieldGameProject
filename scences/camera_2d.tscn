@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cup26u6mesvtq"]
+
+[ext_resource type="Script" uid="uid://dgybse64medtx" path="res://scripts/camera_2d.gd" id="1_plysk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q55nn"]
+size = Vector2(397, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plysk"]
+size = Vector2(398, 3.5)
+
+[node name="Camera2D" type="Camera2D"]
+zoom = Vector2(2.9, 3)
+script = ExtResource("1_plysk")
+
+[node name="up" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="up"]
+position = Vector2(-1, -110)
+shape = SubResource("RectangleShape2D_q55nn")
+
+[node name="down" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="down"]
+position = Vector2(0, 111)
+shape = SubResource("RectangleShape2D_plysk")
+
+[connection signal="body_entered" from="up" to="." method="_on_up_body_entered"]
+[connection signal="body_entered" from="down" to="." method="_on_down_body_entered"]

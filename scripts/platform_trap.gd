@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var break_delay: float = 1  # Thời gian (s) trước khi vỡ
+@export var break_delay: float = 0.3  # Thời gian (s) trước khi vỡ
 @export var respawn_delay:  float = 5.0   # thời gian chờ trước khi respawn
 @export var trap_scene:     PackedScene = preload("res://scences/PlatformTrap.tscn")
 @onready var sprite: Sprite2D                  = $Sprite2D

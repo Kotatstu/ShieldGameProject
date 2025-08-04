@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cel5x3vdhecip" path="res://assets/sprites/tempShield.png" id="2_xx7r3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j74hk"]
-size = Vector2(2, 12)
+size = Vector2(4.5, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xx7r3"]
-size = Vector2(2, 12)
+size = Vector2(4.5, 17.25)
 
 [node name="Shield" type="Area2D" groups=["shield"]]
 collision_layer = 4
@@ -15,11 +15,12 @@ collision_mask = 15
 script = ExtResource("1_xx7r3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(5.96046e-08, -1.19209e-07)
-scale = Vector2(0.0197774, 0.0136253)
+position = Vector2(0.812736, -2.3253)
+scale = Vector2(0.0314714, 0.0186152)
 texture = ExtResource("2_xx7r3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.75, -2.5)
 shape = SubResource("RectangleShape2D_j74hk")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -27,6 +28,7 @@ collision_layer = 4
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.75, -2.375)
 shape = SubResource("RectangleShape2D_xx7r3")
 
 [connection signal="shield_retrieve" from="." to="." method="_on_shield_retrieve"]

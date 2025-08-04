@@ -50,6 +50,9 @@ func _physics_process(delta):
 # Throw the shield at the pos of mouse, stop when reach wall or max length
 func throw_shield_at(target_pos: Vector2):
 	if is_thrown == true:
+		#Flip shield sprite shield way when thrown
+		rotate(0.5*PI)
+		
 		shield_start_pos = global_position
 		velocity = (target_pos - global_position).normalized() * speed
 		

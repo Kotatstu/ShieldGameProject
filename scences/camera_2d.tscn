@@ -23,7 +23,7 @@ shape = SubResource("RectangleShape2D_q55nn")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="down"]
-position = Vector2(0, 111)
+position = Vector2(0, 115)
 shape = SubResource("RectangleShape2D_plysk")
 
 [connection signal="body_entered" from="up" to="." method="_on_up_body_entered"]

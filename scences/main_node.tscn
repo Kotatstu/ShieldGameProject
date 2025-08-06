@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ovr44b3cagfj"]
+[gd_scene load_steps=9 format=3 uid="uid://ovr44b3cagfj"]
 
 [ext_resource type="Script" uid="uid://bxk3bghwnhjod" path="res://scripts/main_node.gd" id="1_fltcg"]
 [ext_resource type="PackedScene" uid="uid://b60g5yyayyp3t" path="res://scences/level_1.tscn" id="1_gu7s8"]
 [ext_resource type="PackedScene" uid="uid://bjf3j02yshb1p" path="res://scences/player.tscn" id="2_fltcg"]
+[ext_resource type="PackedScene" uid="uid://bhevobeyqhls4" path="res://scences/dead_zone.tscn" id="6_f3woj"]
 [ext_resource type="PackedScene" uid="uid://bj7pofd7kxa7g" path="res://scences/shield_object.tscn" id="6_go8eo"]
 [ext_resource type="PackedScene" uid="uid://cup26u6mesvtq" path="res://scences/camera_2d.tscn" id="8_qba77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_go8eo"]
+size = Vector2(50, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3woj"]
+size = Vector2(99, 5)
 
 [node name="MainGame" type="Node2D"]
 position = Vector2(13, 273)
@@ -21,6 +28,20 @@ position = Vector2(41, -9)
 
 [node name="Camera2D" parent="." instance=ExtResource("8_qba77")]
 position = Vector2(347, -83)
+
+[node name="Dead Zone" parent="." instance=ExtResource("6_f3woj")]
+position = Vector2(167, 34)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dead Zone"]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_go8eo")
+
+[node name="Dead Zone2" parent="." instance=ExtResource("6_f3woj")]
+position = Vector2(371, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dead Zone2"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_f3woj")
 
 [connection signal="body_entered" from="Shield" to="." method="_on_shield_body_entered"]
 [connection signal="shield_retrieve" from="Shield" to="." method="_on_shield_shield_retrieve"]

@@ -4,7 +4,7 @@ const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 const SNAP_LENGTH = 8.0          # Khoảng cách snap để bám mặt đất
 const MAX_SLOPE_ANGLE = 45.0     # Góc dốc tối đa 
-const gravity = 900.0            # Lực trọng trường 
+const gravity = 900.0            # Lực trọng trường
 var climbing: bool = false
 var current_rope: Area2D = null
 var onRope = false
@@ -14,7 +14,8 @@ var dash_duration := 0.2
 var is_dashing := false
 var dash_direction := Vector2.ZERO
 var dash_timer := 0.0
-
+var is_wall_sliding = false       #For wall sliding
+var friction = 70                #For wall sliding
 @export var climb_speed: float = 100.0
 
 
@@ -44,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	elif  not is_on_floor():
 		velocity += get_gravity() * delta
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
 		velocity.y = JUMP_VELOCITY
 		
 
@@ -88,7 +89,9 @@ func _physics_process(delta: float) -> void:
 				is_dashing = false
 		else:#if standing still, wont dash
 			pass
-			
+	
+	wall_slide()
+	
 	move_and_slide()
 
 func start_dash():
@@ -105,3 +108,10 @@ func get_input_direction() -> Vector2:
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
 	return direction.normalized()
+
+func wall_slide():
+	if is_on_wall() and not is_on_floor() and velocity.y > 0:
+		is_wall_sliding = true
+		velocity.y = friction
+	else:
+		is_wall_sliding = false

@@ -6,7 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://c7axsv5n8o7wr" path="res://scences/button.tscn" id="5_j3sgy"]
 [ext_resource type="PackedScene" uid="uid://d1dae85pvpfjc" path="res://scences/pushable_object.tscn" id="6_f3woj"]
 [ext_resource type="PackedScene" uid="uid://bj7pofd7kxa7g" path="res://scences/shield_object.tscn" id="6_go8eo"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://oicqxki8cjhq" path="res://scences/rope.tscn" id="7_go8eo"]
+=======
+[ext_resource type="PackedScene" uid="uid://dkx842oqow7yg" path="res://scences/sign.tscn" id="7_go8eo"]
+>>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://cup26u6mesvtq" path="res://scences/camera_2d.tscn" id="8_qba77"]
 [ext_resource type="PackedScene" uid="uid://dv167axfivv10" path="res://scences/platform.tscn" id="9_7f2ni"]
 
@@ -43,6 +47,9 @@ position = Vector2(273, -311)
 
 [node name="Camera2D" parent="." instance=ExtResource("8_qba77")]
 position = Vector2(190, -69)
+
+[node name="sign" parent="." instance=ExtResource("7_go8eo")]
+position = Vector2(102, -13)
 
 [connection signal="body_entered" from="Shield" to="." method="_on_shield_body_entered"]
 [connection signal="shield_retrieve" from="Shield" to="." method="_on_shield_shield_retrieve"]

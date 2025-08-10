@@ -1,45 +1,52 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 @export var break_delay: float = 1  # Thời gian (s) trước khi vỡ
 @export var respawn_delay:  float = 5.0   # thời gian chờ trước khi respawn
 @export var trap_scene:     PackedScene = preload("res://scences/PlatformTrap.tscn")
 @onready var sprite: Sprite2D                  = $Sprite2D
+=======
+@export var break_delay: float = 0.5
+@export var respawn_delay: float = 2.0
+@export var trap_scene: PackedScene = preload("res://scences/PlatformTrap.tscn")
+
+@onready var sprite: Sprite2D = $Sprite2D
+>>>>>>> Stashed changes
 @onready var body_collision: CollisionShape2D = $Body/CollisionShape2D
-@onready var detector: Area2D                  = $Detector
-@onready var timer: Timer                     = $Timer
-var time = 1
-var triggered: bool = false
+@onready var detector: Area2D = $Detector
+@onready var timer: Timer = $Timer
+
+var t := 0.0
+var triggered := false
 
 func _ready() -> void:
 	set_process(false)
-	detector.body_entered.connect(_on_body_entered)
-	timer.timeout.connect(_on_timer_timeout)
-func _process(delta):
-	time += 1
-	$Sprite2D.position += Vector2(0, sin(time)*1.5)
-	
+
+
+func _process(delta: float) -> void:
+	t += delta * 1000
+	sprite.position.y = sin(t) * 1
+
 func _on_body_entered(body: Node) -> void:
-	#print(">>> Trap: body_entered:", body.name)
 	if triggered:
 		return
 	if body.is_in_group("player"):
-		set_process(true)
-		#print(">>> Trap: triggering break timer")
 		triggered = true
+		set_process(true)
 		timer.start(break_delay)
 
-func _on_timer_timeout() -> void:
-	#print(">>> Trap: timer timeout, disabling collision")
+func _on_break() -> void:
+	# “vỡ”:
 	body_collision.disabled = true
-	sprite.modulate = Color(1, 1, 1, 0.5)
+	detector.monitoring = false
+	sprite.modulate.a = 0
 
-	# tạo timer động để respawn
-	var respawner = get_tree().create_timer(respawn_delay)
-	respawner.timeout.connect(func() -> void:
-		# ← bắt đầu block của lambda, lùi vào 4 spaces
-		var new_trap = trap_scene.instantiate()	
-		get_parent().add_child(new_trap)
-		new_trap.global_position = global_position)  # ← kết thúc block
-	
-	#print(">>> Trap: queue_free()")
-	queue_free()
+	# đợi 5 giây rồi “respawn”
+	await get_tree().create_timer(respawn_delay).timeout
+
+	# reset về trạng thái ban đầu
+	body_collision.disabled = false
+	detector.monitoring = true
+	sprite.modulate.a = 1.0
+	triggered = false
+	set_process(false)

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkx842oqow7yg"]
+
+[ext_resource type="Script" uid="uid://bk5d0ewe4xhk7" path="res://scripts/sign.gd" id="1_3waq6"]
+[ext_resource type="Texture2D" uid="uid://b4s7rwjn45g1j" path="res://assets/sprites/sign.png" id="1_bwg8m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3waq6"]
+size = Vector2(18, 24)
+
+[node name="sign" type="Node2D"]
+script = ExtResource("1_3waq6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.3125, -3.75)
+scale = Vector2(0.763021, 0.614583)
+texture = ExtResource("1_bwg8m")
+
+[node name="Detector" type="Area2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+visibility_layer = 15
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_3waq6")
+
+[node name="SignCamera" type="Camera2D" parent="."]
+position = Vector2(0, -2)
+zoom = Vector2(20, 25)
+
+[connection signal="body_entered" from="Detector" to="." method="_on_enter"]
+[connection signal="body_exited" from="Detector" to="." method="_on_exit"]

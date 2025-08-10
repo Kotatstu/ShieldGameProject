@@ -5,6 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bjf3j02yshb1p" path="res://scences/player.tscn" id="2_fltcg"]
 [ext_resource type="PackedScene" uid="uid://bhevobeyqhls4" path="res://scences/dead_zone.tscn" id="6_f3woj"]
 [ext_resource type="PackedScene" uid="uid://bj7pofd7kxa7g" path="res://scences/shield_object.tscn" id="6_go8eo"]
+
+[ext_resource type="PackedScene" uid="uid://oicqxki8cjhq" path="res://scences/rope.tscn" id="7_go8eo"]
+
+[ext_resource type="PackedScene" uid="uid://dkx842oqow7yg" path="res://scences/sign.tscn" id="7_go8eo"]
+
 [ext_resource type="PackedScene" uid="uid://cup26u6mesvtq" path="res://scences/camera_2d.tscn" id="8_qba77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go8eo"]
@@ -42,6 +47,9 @@ position = Vector2(371, 32)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dead Zone2"]
 position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_f3woj")
+
+[node name="sign" parent="." instance=ExtResource("7_go8eo")]
+position = Vector2(102, -13)
 
 [connection signal="body_entered" from="Shield" to="." method="_on_shield_body_entered"]
 [connection signal="shield_retrieve" from="Shield" to="." method="_on_shield_shield_retrieve"]

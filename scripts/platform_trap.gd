@@ -1,17 +1,14 @@
 extends Node2D
 
-<<<<<<< Updated upstream
-@export var break_delay: float = 1  # Thời gian (s) trước khi vỡ
+
+@export var break_delay: float = 0.3  # Thời gian (s) trước khi vỡ
 @export var respawn_delay:  float = 5.0   # thời gian chờ trước khi respawn
 @export var trap_scene:     PackedScene = preload("res://scences/PlatformTrap.tscn")
 @onready var sprite: Sprite2D                  = $Sprite2D
-=======
 @export var break_delay: float = 0.5
 @export var respawn_delay: float = 2.0
 @export var trap_scene: PackedScene = preload("res://scences/PlatformTrap.tscn")
-
 @onready var sprite: Sprite2D = $Sprite2D
->>>>>>> Stashed changes
 @onready var body_collision: CollisionShape2D = $Body/CollisionShape2D
 @onready var detector: Area2D = $Detector
 @onready var timer: Timer = $Timer

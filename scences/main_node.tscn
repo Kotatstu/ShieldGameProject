@@ -1,18 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://ovr44b3cagfj"]
+[gd_scene load_steps=9 format=3 uid="uid://ovr44b3cagfj"]
 
 [ext_resource type="Script" uid="uid://bxk3bghwnhjod" path="res://scripts/main_node.gd" id="1_fltcg"]
 [ext_resource type="PackedScene" uid="uid://b60g5yyayyp3t" path="res://scences/level_1.tscn" id="1_gu7s8"]
 [ext_resource type="PackedScene" uid="uid://bjf3j02yshb1p" path="res://scences/player.tscn" id="2_fltcg"]
-[ext_resource type="PackedScene" uid="uid://c7axsv5n8o7wr" path="res://scences/button.tscn" id="5_j3sgy"]
-[ext_resource type="PackedScene" uid="uid://d1dae85pvpfjc" path="res://scences/pushable_object.tscn" id="6_f3woj"]
+[ext_resource type="PackedScene" uid="uid://bhevobeyqhls4" path="res://scences/dead_zone.tscn" id="6_f3woj"]
 [ext_resource type="PackedScene" uid="uid://bj7pofd7kxa7g" path="res://scences/shield_object.tscn" id="6_go8eo"]
-<<<<<<< Updated upstream
+
 [ext_resource type="PackedScene" uid="uid://oicqxki8cjhq" path="res://scences/rope.tscn" id="7_go8eo"]
-=======
+
 [ext_resource type="PackedScene" uid="uid://dkx842oqow7yg" path="res://scences/sign.tscn" id="7_go8eo"]
->>>>>>> Stashed changes
+
 [ext_resource type="PackedScene" uid="uid://cup26u6mesvtq" path="res://scences/camera_2d.tscn" id="8_qba77"]
-[ext_resource type="PackedScene" uid="uid://dv167axfivv10" path="res://scences/platform.tscn" id="9_7f2ni"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_go8eo"]
+size = Vector2(50, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3woj"]
+size = Vector2(99, 5)
 
 [node name="MainGame" type="Node2D"]
 position = Vector2(13, 273)
@@ -24,29 +28,25 @@ position = Vector2(3, -1)
 [node name="player" parent="." instance=ExtResource("2_fltcg")]
 position = Vector2(24, -9)
 
-[node name="Area2D" parent="." instance=ExtResource("5_j3sgy")]
-position = Vector2(108, -3)
-
-[node name="pushable object" parent="." instance=ExtResource("6_f3woj")]
-position = Vector2(69, -16)
-
 [node name="Shield" parent="." instance=ExtResource("6_go8eo")]
 position = Vector2(41, -9)
 
-[node name="Rope" parent="." instance=ExtResource("7_go8eo")]
-position = Vector2(321, -110)
-
-[node name="Rope2" parent="." instance=ExtResource("7_go8eo")]
-position = Vector2(248, -243)
-
-[node name="Rope3" parent="." instance=ExtResource("7_go8eo")]
-position = Vector2(312, -376)
-
-[node name="platform" parent="." instance=ExtResource("9_7f2ni")]
-position = Vector2(273, -311)
-
 [node name="Camera2D" parent="." instance=ExtResource("8_qba77")]
-position = Vector2(190, -69)
+position = Vector2(347, -83)
+
+[node name="Dead Zone" parent="." instance=ExtResource("6_f3woj")]
+position = Vector2(167, 34)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dead Zone"]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_go8eo")
+
+[node name="Dead Zone2" parent="." instance=ExtResource("6_f3woj")]
+position = Vector2(371, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dead Zone2"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_f3woj")
 
 [node name="sign" parent="." instance=ExtResource("7_go8eo")]
 position = Vector2(102, -13)

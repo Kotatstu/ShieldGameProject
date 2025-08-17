@@ -1,13 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://ovr44b3cagfj"]
+
+[gd_scene load_steps=10 format=3 uid="uid://ovr44b3cagfj"]
+
 
 [ext_resource type="Script" uid="uid://bxk3bghwnhjod" path="res://scripts/main_node.gd" id="1_fltcg"]
 [ext_resource type="PackedScene" uid="uid://b60g5yyayyp3t" path="res://scences/level_1.tscn" id="1_gu7s8"]
 [ext_resource type="PackedScene" uid="uid://bjf3j02yshb1p" path="res://scences/player.tscn" id="2_fltcg"]
 [ext_resource type="PackedScene" uid="uid://bhevobeyqhls4" path="res://scences/dead_zone.tscn" id="6_f3woj"]
 [ext_resource type="PackedScene" uid="uid://bj7pofd7kxa7g" path="res://scences/shield_object.tscn" id="6_go8eo"]
+
 [ext_resource type="Texture2D" uid="uid://b5xithrkt5tla" path="res://assets/sprites/plx-1.png" id="7_cww07"]
 [ext_resource type="PackedScene" uid="uid://dkx842oqow7yg" path="res://scences/sign.tscn" id="7_go8eo"]
 [ext_resource type="Texture2D" uid="uid://cy05h85axp80f" path="res://assets/sprites/plx-2.png" id="8_3i0v1"]
+
 [ext_resource type="PackedScene" uid="uid://cup26u6mesvtq" path="res://scences/camera_2d.tscn" id="8_qba77"]
 [ext_resource type="Texture2D" uid="uid://bfctwtr5mh0ef" path="res://assets/sprites/plx-3.png" id="9_kn1nu"]
 [ext_resource type="Texture2D" uid="uid://c8bscenledr10" path="res://assets/sprites/plx-4.png" id="10_45g6h"]

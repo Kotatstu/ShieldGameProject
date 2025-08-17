@@ -30,7 +30,9 @@ func _process(delta: float) -> void:
 	
 # Called when there a input event
 func _input(event):
-	pass
+	if Input.is_action_just_pressed("Menu"):
+		#get_tree().paused = true
+		get_tree().change_scene_to_file("res://scences/main_ui.tscn")
 		
 	
 

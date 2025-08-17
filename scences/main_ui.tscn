@@ -25,6 +25,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r0vrj")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.272902, 0.27387, 0.276514, 1)
+
 [node name="StartGameBtn" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -32,10 +38,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -36.0
-offset_right = 140.0
-offset_bottom = 36.0
+offset_left = -132.0
+offset_top = -168.0
+offset_right = 148.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -44,7 +50,62 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_rfjhm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_r0vrj")
-text = "Start Game"
-metadata/_edit_use_anchors_ = true
+text = "New Game"
+
+[node name="OptionsBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -67.0
+offset_right = 148.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_rfjhm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_r0vrj")
+text = "Options"
+
+[node name="QuitBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.819444
+anchor_right = 0.5
+anchor_bottom = 0.819444
+offset_left = -132.0
+offset_top = -168.0
+offset_right = 148.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_rfjhm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_r0vrj")
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 58.0
+offset_right = 776.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "Shield Game"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="StartGameBtn" to="." method="_on_start_game_btn_pressed"]
+[connection signal="pressed" from="OptionsBtn" to="." method="_on_options_btn_pressed"]
+[connection signal="pressed" from="QuitBtn" to="." method="_on_quit_btn_pressed"]

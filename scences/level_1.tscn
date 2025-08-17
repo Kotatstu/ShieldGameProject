@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b60g5yyayyp3t"]
+[gd_scene load_steps=12 format=3 uid="uid://b60g5yyayyp3t"]
 
 [ext_resource type="Texture2D" uid="uid://d15ohjgnni4ai" path="res://assets/sprites/tileset.png" id="2_sb2ae"]
 [ext_resource type="Texture2D" uid="uid://bi1cbrcrfp4q6" path="res://assets/sprites/world_tileset.png" id="2_xhca5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dv167axfivv10" path="res://scences/platform.tscn" id="4_sjas7"]
 [ext_resource type="PackedScene" uid="uid://ld684i3afej1" path="res://scences/PlatformTrap.tscn" id="5_k3rl8"]
 [ext_resource type="PackedScene" uid="uid://oicqxki8cjhq" path="res://scences/rope.tscn" id="6_b8dy2"]
+[ext_resource type="PackedScene" uid="uid://bsy1hqf3rlo46" path="res://scences/trap buton.tscn" id="7_l41k7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3rl8"]
 texture = ExtResource("2_xhca5")
@@ -675,3 +676,6 @@ position = Vector2(615, -255)
 
 [node name="Rope2" parent="." instance=ExtResource("6_b8dy2")]
 position = Vector2(592, -351)
+
+[node name="Area2D" parent="." instance=ExtResource("7_l41k7")]
+position = Vector2(111, -1)

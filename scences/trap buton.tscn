@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsy1hqf3rlo46"]
+
+[ext_resource type="Script" uid="uid://v4yq40jadeyg" path="res://scripts/trap_buton.gd" id="1_rael2"]
+[ext_resource type="Texture2D" uid="uid://cu7s1s84utf0v" path="res://assets/sprites/button.png" id="2_uu1yv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsvb0"]
+atlas = ExtResource("2_uu1yv")
+region = Rect2(10, 41, 30, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ixy0"]
+atlas = ExtResource("2_uu1yv")
+region = Rect2(40, 41, 30, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3dey"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_gsvb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ixy0")
+}],
+"loop": false,
+"name": &"press",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8syx"]
+size = Vector2(19.3867, 9.27273)
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(0.670563, 0.439999)
+collision_mask = 15
+script = ExtResource("1_rael2")
+
+[node name="press" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.995337, 0.74849)
+sprite_frames = SubResource("SpriteFrames_e3dey")
+animation = &"press"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(2.23693, -2.36363)
+shape = SubResource("RectangleShape2D_s8syx")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+visibility_layer = 9
+collision_mask = 9
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatableBody2D"]
+physics_interpolation_mode = 1
+visibility_layer = 9
+position = Vector2(0, -2.28693)
+scale = Vector2(1, 1.4375)
+polygon = PackedVector2Array(-8.94771, 4.54546, -5.96514, 2.27273, 10.439, 2.27273, 13.4216, 4.54546)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

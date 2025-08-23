@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ShieldGameProject"
-run/main_scene="uid://ovr44b3cagfj"
+run/main_scene="uid://dgm811klsdjm"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

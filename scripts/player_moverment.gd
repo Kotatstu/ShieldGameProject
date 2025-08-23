@@ -17,6 +17,7 @@ var dash_timer := 0.0
 var is_wall_sliding = false       #For wall sliding
 var friction = 70                #For wall sliding
 @export var climb_speed: float = 100.0
+var WALL_JUMP_PUSH = 500
 
 
 @onready var animated_sprite = $Node2D/CharacterAnimation
@@ -30,6 +31,11 @@ func _process(delta: float) -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	
+	# Get the input direction and handle the movement/deceleration.
+	#-1, 0, 1
+	var direction = Input.get_axis("move_left", "move_right")
+	
 # Drop down on platform
 	if Input.is_action_pressed("Down"):
 		position.y += 1
@@ -45,14 +51,22 @@ func _physics_process(delta: float) -> void:
 	elif  not is_on_floor():
 		velocity += get_gravity() * delta
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
+	if Input.is_action_just_pressed("jump") and (is_on_floor()):
 		velocity.y = JUMP_VELOCITY
+	elif Input.is_action_just_pressed("jump") and (is_on_wall()):
+		velocity.y = JUMP_VELOCITY
+		# Push opposite to the wall
+		#print("Jumping on wall")
+		if animated_sprite.flip_h == true:
+			#print("Jumping on left wall")
+			velocity.x = WALL_JUMP_PUSH
+		elif animated_sprite.flip_h == false:
+			velocity.x = -WALL_JUMP_PUSH
+			#print("Jumping on right wall")
 		
 
 		
-	# Get the input direction and handle the movement/deceleration.
-	#-1, 0, 1
-	var direction = Input.get_axis("move_left", "move_right")
+	
 	#flip
 	if direction > 0:
 		animated_sprite.flip_h = false

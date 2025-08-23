@@ -1,10 +1,12 @@
 extends Node2D
 
 var player_to_shield_dis = Vector2(10, 0)
+var running = true
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	pauseMenu()
 	
 
 
@@ -26,15 +28,14 @@ func _process(delta: float) -> void:
 		$Shield.global_position = player_pos + offset
 		#Rotate shield
 		$Shield.rotation = dir.angle()
+		
+	if Input.is_action_just_pressed("Menu"):
+		pauseMenu()
 	
 	
 # Called when there a input event
 func _input(event):
-	if Input.is_action_just_pressed("Menu"):
-		#get_tree().paused = true
-		get_tree().change_scene_to_file("res://scences/main_ui.tscn")
-		
-	
+	pass
 
 #Got signal when left click
 func _on_shield_shield_throw() -> void:
@@ -56,3 +57,14 @@ func _on_shield_shield_retrieve() -> void:
 	var player_pos = $player.global_position
 	$Shield.global_position = player_pos
 	$Shield.is_thrown = false
+
+func pauseMenu():
+	if running:
+		$Camera2D/PauseMenu.hide()
+		Engine.time_scale = 1
+	else:
+		$Camera2D/PauseMenu.show()
+		Engine.time_scale = 0
+		
+	running = !running
+	

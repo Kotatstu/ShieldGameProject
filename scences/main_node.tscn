@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ovr44b3cagfj"]
+[gd_scene load_steps=16 format=3 uid="uid://ovr44b3cagfj"]
 
 [ext_resource type="Script" uid="uid://bxk3bghwnhjod" path="res://scripts/main_node.gd" id="1_fltcg"]
 [ext_resource type="PackedScene" uid="uid://b60g5yyayyp3t" path="res://scences/level_1.tscn" id="1_gu7s8"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bfctwtr5mh0ef" path="res://assets/sprites/plx-3.png" id="9_kn1nu"]
 [ext_resource type="Texture2D" uid="uid://c8bscenledr10" path="res://assets/sprites/plx-4.png" id="10_45g6h"]
 [ext_resource type="Texture2D" uid="uid://cdg8cjue2uy3n" path="res://assets/sprites/plx-5.png" id="11_07415"]
+[ext_resource type="PackedScene" uid="uid://bbiomokargig0" path="res://scences/pause_menu.tscn" id="13_kn1nu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go8eo"]
 size = Vector2(50, 4)
@@ -177,6 +178,13 @@ texture = ExtResource("11_07415")
 
 [node name="Camera2D" parent="." instance=ExtResource("8_qba77")]
 position = Vector2(341, -84)
+
+[node name="PauseMenu" parent="Camera2D" instance=ExtResource("13_kn1nu")]
+visible = false
+offset_left = -10.0
+offset_top = -50.0
+offset_right = -10.0
+offset_bottom = -50.0
 
 [connection signal="body_entered" from="Shield" to="." method="_on_shield_body_entered"]
 [connection signal="shield_retrieve" from="Shield" to="." method="_on_shield_shield_retrieve"]

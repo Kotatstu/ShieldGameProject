@@ -177,7 +177,7 @@ scale = Vector2(1.78646, 1.61574)
 texture = ExtResource("11_07415")
 
 [node name="Camera2D" parent="." instance=ExtResource("8_qba77")]
-position = Vector2(341, -84)
+position = Vector2(330, -87)
 
 [node name="PauseMenu" parent="Camera2D" instance=ExtResource("13_kn1nu")]
 visible = false

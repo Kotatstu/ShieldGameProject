@@ -10,13 +10,15 @@ size = Vector2(719, 6.375)
 
 [node name="Camera2D" type="Camera2D"]
 zoom = Vector2(1.6, 2.7)
+process_callback = 0
+limit_smoothed = true
 script = ExtResource("1_plysk")
 
 [node name="up" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="up"]
-position = Vector2(1, -123.625)
+position = Vector2(1, -119)
 shape = SubResource("RectangleShape2D_q55nn")
 
 [node name="down" type="Area2D" parent="."]

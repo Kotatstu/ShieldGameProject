@@ -1,94 +1,52 @@
+# Sign.gd (Godot 4) – gắn vào node gốc "sign" (Node2D)
 extends Node2D
-##
-# Sign.gd - Nhấn E để zoom vào biển báo; nhấn E lần nữa (hoặc bước ra) để trả camera về như cũ.
-##
 
-@export var tween_time: float = 0      # thời gian chuyển
-@export var zoom_on_sign: bool = true    # có phóng to khi xem biển không
-@export var zoom_amount: float = 6     # <1.0 = phóng to (0.6 ≈ 1.67x)
-@export var camera_offset: Vector2 = Vector2.ZERO # lệch cam một chút nếu cần
-
-@onready var detector: Area2D    = $Detector
-@onready var sign_cam: Camera2D  = $SignCamera
-@onready var hint: Label         = get_node_or_null("Hint") # optional
-
-var prev_cam: Camera2D = null     # camera world hiện tại
-var in_range := false             # player đang đứng trong vùng
-var reading  := false             # đang “đọc biển” (đã chuyển camera)
-var busy     := false             # khoá tween
+@export var big_sign_scene: PackedScene
+@onready var detector: Area2D = $Detector
+var hint_label: Label
+var _player_inside := false
+var _big_sign: CanvasLayer
 
 func _ready() -> void:
-	sign_cam.enabled = false
-	if hint: hint.visible = false
-	set_process_input(true)
+	# Tìm Hint ở cùng cấp hoặc nằm cạnh Detector
+	hint_label = get_node_or_null("Hint")
+	if hint_label == null:
+		hint_label = get_node_or_null("../Hint")  # phòng khi script gắn nhầm vào Detector
+	if hint_label:
+		hint_label.visible = false
+	else:
+		push_error("Không tìm thấy Label 'Hint' (hãy kiểm tra tên node và nơi gắn script).")
 
-func _on_enter(body: Node) -> void:
-	if not body.is_in_group("player"): return
-	in_range = true
-	if hint: hint.visible = true
+	# Kết nối tín hiệu cho Detector
+	if not detector.body_entered.is_connected(_on_body_entered):
+		detector.body_entered.connect(_on_body_entered)
+	if not detector.body_exited.is_connected(_on_body_exited):
+		detector.body_exited.connect(_on_body_exited)
 
-func _on_exit(body: Node) -> void:
-	if not body.is_in_group("player"): return
-	in_range = false
-	if hint: hint.visible = false
-	# Nếu đang đọc mà rời vùng -> trả về camera cũ
-	if reading and not busy:
-		_exit_read()
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		_player_inside = true
+		if hint_label: hint_label.visible = true
 
-func _input(event: InputEvent) -> void:
-	if not in_range: return
-	if busy: return
-	if event.is_action_pressed("interact"):
-		if not reading:
-			_enter_read()
-		else:
-			_exit_read()
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		_player_inside = false
+		if hint_label: hint_label.visible = false
 
-func _enter_read() -> void:
-	busy = true
-	reading = true
-	if hint: hint.visible = false
+func _unhandled_input(event: InputEvent) -> void:
+	if _player_inside and event.is_action_pressed("interact"):
+		if _big_sign: _close_big_sign()
+		else: _open_big_sign()
 
-	# Lưu camera hiện tại (camera world cố định)
-	prev_cam = get_viewport().get_camera_2d()
-
-	# Đặt vị trí camera bảng
-	sign_cam.global_position = global_position + camera_offset
-
-	# Bắt đầu bằng zoom của camera cũ để mượt
-	if prev_cam:
-		sign_cam.zoom = prev_cam.zoom
-
-	sign_cam.enabled = true
-	sign_cam.make_current()
-
-	if zoom_on_sign:
-		var tw = get_tree().create_tween()
-		tw.tween_property(sign_cam, "zoom", Vector2(zoom_amount, zoom_amount), tween_time)\
-		  .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		await tw.finished
-	busy = false
-
-func _exit_read() -> void:
-	if prev_cam == null:
-		# fallback: nếu vì lý do gì không có prev_cam, tắt camera bảng luôn
-		sign_cam.enabled = false
-		reading = false
-		busy = false
+func _open_big_sign() -> void:
+	if big_sign_scene == null:
+		push_error("Chưa gán 'big_sign_scene' trong Inspector cho Sign.")
 		return
+	_big_sign = big_sign_scene.instantiate()
+	get_tree().current_scene.add_child(_big_sign)
+	_big_sign.tree_exited.connect(func(): _big_sign = null)
 
-	busy = true
-	if zoom_on_sign:
-		var tw = get_tree().create_tween()
-		tw.tween_property(sign_cam, "zoom", prev_cam.zoom, tween_time)\
-		  .set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		await tw.finished
-
-	# Trả lại camera world
-	prev_cam.make_current()
-	sign_cam.enabled = false
-	prev_cam = null
-	reading = false
-	busy = false
-	if in_range and hint:
-		hint.visible = true  # còn đứng trong vùng thì hiện gợi ý lại
+func _close_big_sign() -> void:
+	if _big_sign and is_instance_valid(_big_sign):
+		_big_sign.queue_free()
+		_big_sign = null

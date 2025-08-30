@@ -18,7 +18,7 @@ func _show_countdown() -> void:
 	# CanvasLayer UI
 	_game_over_canvas = CanvasLayer.new()
 	_game_over_canvas.layer = 100
-	get_tree().root.add_child(_game_over_canvas)
+	get_tree().current_scene.add_child(_game_over_canvas)
 
 	# Label chiếm màn hình
 	_label = Label.new()

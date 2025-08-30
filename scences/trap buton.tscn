@@ -26,7 +26,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8syx"]
-size = Vector2(19.3867, 9.27273)
+size = Vector2(19.3867, 2.36363)
 
 [node name="Area2D" type="Area2D"]
 scale = Vector2(0.670563, 0.439999)
@@ -39,8 +39,7 @@ sprite_frames = SubResource("SpriteFrames_e3dey")
 animation = &"press"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(2.23693, -2.36363)
+position = Vector2(1.49128, -4.54546)
 shape = SubResource("RectangleShape2D_s8syx")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
@@ -53,6 +52,7 @@ visibility_layer = 9
 position = Vector2(0, -2.28693)
 scale = Vector2(1, 1.4375)
 polygon = PackedVector2Array(-8.94771, 4.54546, -5.96514, 2.27273, 10.439, 2.27273, 13.4216, 4.54546)
+one_way_collision = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

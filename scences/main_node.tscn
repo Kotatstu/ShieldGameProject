@@ -180,7 +180,7 @@ scale = Vector2(1.78646, 1.61574)
 texture = ExtResource("11_07415")
 
 [node name="Camera2D" parent="." instance=ExtResource("8_qba77")]
-position = Vector2(341, -84)
+position = Vector2(330, -87)
 
 [connection signal="body_entered" from="Shield" to="." method="_on_shield_body_entered"]
 [connection signal="shield_retrieve" from="Shield" to="." method="_on_shield_shield_retrieve"]

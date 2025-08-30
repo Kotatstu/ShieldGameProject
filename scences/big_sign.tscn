@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpj2f6petw3t1"]
+
+[ext_resource type="Script" uid="uid://ck1wyawvtqjfr" path="res://scripts/big_sign.gd" id="1_8d8es"]
+[ext_resource type="Texture2D" uid="uid://bvrfp48d1bwj0" path="res://assets/sprites/tutorial sign board.png" id="1_n2t2u"]
+
+[node name="BigSign" type="CanvasLayer"]
+script = ExtResource("1_8d8es")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Center"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Center/Panel"]
+layout_mode = 0
+offset_left = -315.0
+offset_top = -316.0
+offset_right = 320.0
+offset_bottom = 293.0
+mouse_filter = 2
+texture = ExtResource("1_n2t2u")
+expand_mode = 1
+stretch_mode = 5

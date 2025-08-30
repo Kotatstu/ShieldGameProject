@@ -3,5 +3,6 @@
 [ext_resource type="AudioStream" uid="uid://dog0gmuy2qa6m" path="res://assets/music/Jump King GotB OST - 01 Philosopher's Forest.mp3" id="1_g6r5r"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_g6r5r")
 autoplay = true
